@@ -1,5 +1,7 @@
 package io.zipcoder;
 
+import java.util.Arrays;
+
 public class Student {
     private String firstName;
     private String lastName;
@@ -15,7 +17,8 @@ public class Student {
      * @param lastName
      */
     public Student(String firstName, String lastName) {
-
+    	this.firstName = firstName;
+    	this.lastName = lastName;
     }
 
     /**
@@ -25,35 +28,43 @@ public class Student {
      * @param totalExams
      */
     public Student(String firstName, String lastName, int totalExams) {
+    	this.firstName = firstName;
+    	this.lastName = lastName;
+    	this.totalExams = totalExams;
+    	this.testScores = new int [totalExams];
+    	
 
     }
 
     public String getFirstName() {
-        return null;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-
+    	this.firstName = firstName;
+    	
     }
 
     public String getLastName() {
-        return null;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
+    	this.lastName = lastName;
 
     }
 
     public int getTotalExams() {
-        return 0;
+        return totalExams;
     }
 
     public void setTotalExams(int totalExams) {
+    	this.totalExams = totalExams;
 
     }
 
-    public int getExamsTaken() {
-        return 0;
+    public int getExamsTaken() {;
+        return examsTaken;
     }
 
 
@@ -67,7 +78,16 @@ public class Student {
      * @return The test scores in a nice string representation.
      */
     public String printExamScores() {
-        return null;
+    	String output= "";
+    	if (examsTaken==0)
+    	{
+    		output= "No exams taken"; 
+    	}
+    	else 
+    	{
+    		output= Arrays.toString(testScores);
+    	}
+        return output;
     }
 
     /**
@@ -79,8 +99,34 @@ public class Student {
      * @return A boolean based on if the operation worked or not.
      */
     public boolean takeExam(int score) {
-        return false;
+    	String arrayBefore= Arrays.toString(testScores);
+    	String arrayAfter= "";
+    	
+    	if(examsTaken< totalExams)
+    	{
+        		if  (score<100 && score>0)
+        		{
+        			testScores[examsTaken]= score;
+        			arrayAfter= Arrays.toString(testScores);
+        			examsTaken++;
+        			return true;
+        		}
+        		else 
+        		{
+        			return false;
+        		}
+    	}
+   
+    	else
+    	{
+    		System.out.println("You have already sat all your exams");
+    		return false;
+    	}
+    	
+ 
+    
     }
+   
 
     /**
      * Change the score for one of the students tests.
@@ -91,7 +137,17 @@ public class Student {
      * @return A boolean based on if the operation worked or not.
      */
     public boolean changeScoreForExam(int examNum, int newScore){
-        return false;
+    String arrayBefore= Arrays.toString(testScores);
+    testScores[examNum-1]= newScore;
+    String arrayAfter= Arrays.toString(testScores);
+    
+    if (arrayBefore.equals(arrayAfter))
+	{
+		return false;
+	}
+	else {
+		return true;
+	}
     }
 
     /**
@@ -100,6 +156,22 @@ public class Student {
      * @return The average for all the exams a student has taken.
      */
     public double getAverage() {
-        return 100.0;
+    	
+    if (examsTaken==0)
+    {
+    	 return 100.0;
+    }
+    else {
+    	int sum = 0;
+    	for (int d : testScores) 
+    	{
+    		sum += d;
+    	}
+    	double average = (1.0d * sum) / (examsTaken);
+    	return average;
+    }
+ 
     }
 }
+    
+    

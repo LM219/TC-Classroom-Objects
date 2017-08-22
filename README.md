@@ -1,5 +1,5 @@
 # Classroom Objects Lab
-For this lab, we're going to create a Classroom class.  But first, since a classroom without any possible students
+For this lab, we're going to create a Classroom class.  But first, since a classroom  without any possible students
 sounds like it belongs in a spooky abandoned school, we need to create Students.
 
 Also, be certain that you have well made unit tests.  That should go without saying, but I'm doing it anyway.
